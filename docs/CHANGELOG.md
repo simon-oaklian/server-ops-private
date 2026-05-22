@@ -34,3 +34,14 @@ Deferred because source contains hardcoded default/demo passwords that should be
 - /home/simon/jnono
 
 No business services were restarted. No runtime databases, logs, customer uploads, tokens, keys, or production .env files were committed.
+
+## 2026-05-22 GitHub Push Complete
+
+Pushed the first four sanitized code repositories to GitHub private repositories:
+
+- oaklian-site -> commit 31cd3fa19c6f3f965fecd6c11ab542619a9c0203
+- oaklian-seo-v4 -> commit 179fce2a9b42bf07579516042e2d928e42525476
+- oaklian-crm -> commit dffb6559d01fea0af458348c61603cb1f91cb03
+- pricvo-deals -> commit b4d9ddf5deac378b07ea4923f1d284672a1a8c6
+
+Each repository uses a separate GitHub deploy key with write access. Sensitive runtime files remain excluded by .gitignore.
