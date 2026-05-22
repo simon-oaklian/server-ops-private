@@ -17,3 +17,20 @@ For every future production change, record:
 - Backup location
 - Verification command/result
 - Rollback note
+
+## 2026-05-22 Code Backup Prep
+
+Prepared local Git repositories and first commits:
+
+- /var/www/oaklian -> oaklian-site, commit 31cd3fa, excludes leads, uploads, logs, IndexNow key, backups, privacy originals.
+- /home/simon/AI-SEO-oaklian -> oaklian-seo-v4, commit 179fce2, excludes .env, secrets, uploads, logs, generated site, production compose; includes redacted compose example.
+- /var/www/crm-oaklian -> oaklian-crm, commit dffb65, excludes database, uploads, logs, generated/customer documents, backups.
+- /home/simon/deals -> pricvo-deals, commit b4d9dd, excludes .env.local, .next, 
+ode_modules, storage SQLite.
+
+Deferred because source contains hardcoded default/demo passwords that should be refactored or sanitized first:
+
+- /var/www/recossi
+- /home/simon/jnono
+
+No business services were restarted. No runtime databases, logs, customer uploads, tokens, keys, or production .env files were committed.
