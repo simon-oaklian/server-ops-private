@@ -57,3 +57,12 @@ ode_modules, logs, env files, public uploads. Default/demo passwords were replac
 Production data and source directories were not modified for these backups.
 
 Clarification: the sanitized Recossi/JNONO commits were created from /home/simon/code-backups/... copies. Production data was not modified. Earlier inspection created empty local Git metadata in the original Recossi/JNONO directories; it has not been pushed and can be cleaned later after explicit confirmation.
+
+## 2026-05-22 Recossi and JNONO GitHub Push Complete
+
+Pushed sanitized isolated backup repositories to GitHub private repositories:
+
+- ecossi -> commit 79bd4e482f4bafbe486bce8beaf80726df651c3
+- jnono -> commit 52ad296d5b7c9e5259e4ef95d753fb9e5d0062a4
+
+These pushes used code-backup copies under /home/simon/code-backups/. Production databases, question banks, images, uploads, storage, logs, and env files were not included.
