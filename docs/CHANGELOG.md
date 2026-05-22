@@ -55,3 +55,5 @@ ode_modules, logs, env files, public uploads. Default/demo passwords were replac
 - /home/simon/code-backups/jnono -> source /home/simon/jnono, commit 52ad296, excludes data/, question bank/database, images, backups, templates, logs, debug files, env files. Default/demo passwords were replaced with CHANGE_ME_* placeholders in the backup copy only.
 
 Production data and source directories were not modified for these backups.
+
+Clarification: the sanitized Recossi/JNONO commits were created from /home/simon/code-backups/... copies. Production data was not modified. Earlier inspection created empty local Git metadata in the original Recossi/JNONO directories; it has not been pushed and can be cleaned later after explicit confirmation.
