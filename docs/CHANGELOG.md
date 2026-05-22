@@ -45,3 +45,13 @@ Pushed the first four sanitized code repositories to GitHub private repositories
 - pricvo-deals -> commit b4d9ddf5deac378b07ea4923f1d284672a1a8c6
 
 Each repository uses a separate GitHub deploy key with write access. Sensitive runtime files remain excluded by .gitignore.
+
+## 2026-05-22 Sanitized Recossi and JNONO Backup Prep
+
+Prepared sanitized backup repositories outside production directories:
+
+- /home/simon/code-backups/recossi -> source /var/www/recossi, commit 79bd4e, excludes storage, SQLite/database files, .next, 
+ode_modules, logs, env files, public uploads. Default/demo passwords were replaced with CHANGE_ME_* placeholders in the backup copy only.
+- /home/simon/code-backups/jnono -> source /home/simon/jnono, commit 52ad296, excludes data/, question bank/database, images, backups, templates, logs, debug files, env files. Default/demo passwords were replaced with CHANGE_ME_* placeholders in the backup copy only.
+
+Production data and source directories were not modified for these backups.
