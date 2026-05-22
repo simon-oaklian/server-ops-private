@@ -1,0 +1,15 @@
+[Unit]
+Description=OAKLIAN Web App
+After=network.target
+
+[Service]
+User=simon
+WorkingDirectory=/var/www/oaklian
+EnvironmentFile=/etc/oaklian/oaklian.env
+ExecStart=/usr/bin/python3 /var/www/oaklian/app.py
+Restart=always
+StandardOutput=append:/var/www/oaklian/oaklian.log
+StandardError=append:/var/www/oaklian/oaklian.log
+
+[Install]
+WantedBy=multi-user.target

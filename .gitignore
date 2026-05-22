@@ -1,0 +1,55 @@
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*secret*
+*secrets*
+*token*
+*credential*
+*credentials*
+*oauth*
+*cookie*
+*cookies*
+
+# Databases and runtime data
+*.db
+*.sqlite
+*.sqlite3
+*.dump
+*.sql
+*.bak
+*.backup
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+
+# Logs and process files
+*.log
+logs/
+*.pid
+
+# Build/dependency output
+node_modules/
+.next/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Large/private media and uploads
+uploads/
+images/
+storage/
+
+# Local editor/system files
+.DS_Store
+._*
+.vscode/
+.cursor/
