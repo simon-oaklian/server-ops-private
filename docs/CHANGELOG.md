@@ -97,3 +97,15 @@ Remaining root/dashboard cleanup:
 - /etc/cloudflared/config.yml still contains a stale crm.oaklian.com -> localhost:8069 mapping even though crm-oaklian.service runs on port 5001 and public CRM GET currently returns 200 via another Cloudflare-managed route.
 - cloudflared-jnono is token-managed and still routes jnono.com to localhost:8000. The clean final state should route jnono.com to localhost:5173 or to host nginx, then remove the port-8000 compatibility watchdog.
 - Updating those root/dashboard-managed routes requires sudo or Cloudflare dashboard access.
+
+## 2026-06-04 SEO V4 Analytics Cron Restored
+
+Correction:
+
+- The SEO V4 Cloudflare RUM analytics cron jobs were restored after clarifying that traffic analytics should continue updating.
+- Restored jobs:
+  - */10 * * * * flock -n /tmp/cf_analytics_today.lock docker exec OAKLIAN-SEO-GENERATOR python /app/cf_analytics_fetch.py --today >> /home/simon/AI-SEO-oaklian/logs/cf_fetch_today.log 2>&1
+  - 30 1 * * * docker exec OAKLIAN-SEO-GENERATOR python /app/cf_analytics_fetch.py >> /home/simon/AI-SEO-oaklian/logs/cf_fetch.log 2>&1
+- Backup before restoring analytics cron: /home/simon/crontab.backup.before_restore_analytics.20260604_073722
+- Manual verification run completed successfully at 2026-06-04 07:37 UTC; cf_fetch_today.log showed Cloudflare RUM fetches and analytics_daily / analytics_geo_daily upsert attempts for oaklian, jnono, pricvo, and recossi.
+- This restores analytics ingestion only. It does not enable SEO content auto-generation or auto-publishing.
