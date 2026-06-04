@@ -66,3 +66,34 @@ Pushed sanitized isolated backup repositories to GitHub private repositories:
 - jnono -> commit 52ad296d5b7c9e5259e4ef95d753fb9e5d0062a4
 
 These pushes used code-backup copies under /home/simon/code-backups/. Production databases, question banks, images, uploads, storage, logs, and env files were not included.
+
+## 2026-06-04 JNONO Outage Cleanup and Service Hygiene
+
+Context:
+
+- JNONO public 502 was traced to cloudflared-jnono routing jnono.com to localhost:8000 while the normal jnono.service runs on port 5173.
+- A temporary compatibility process was started on port 8000 from /home/simon/jnono so the current tunnel origin stays healthy until the Cloudflare dashboard/root-managed route is corrected.
+- User crontab was backed up to /home/simon/crontab.backup.20260604_073231.
+
+Changes made:
+
+- Removed Cloudflare RUM analytics cron jobs for SEO V4 from the simon crontab:
+  - */10 * * * * docker exec OAKLIAN-SEO-GENERATOR python /app/cf_analytics_fetch.py --today
+  - 30 1 * * * docker exec OAKLIAN-SEO-GENERATOR python /app/cf_analytics_fetch.py
+- Kept the weekly inbox reminder cron.
+- Kept JNONO port-8000 compatibility watchdog entries:
+  - @reboot /home/simon/ensure_jnono_8000.sh
+  - */5 * * * * /home/simon/ensure_jnono_8000.sh
+- Resolved recossi.service flapping by stopping the old manual Next.js process on port 3100; systemd restarted recossi.service and now owns port 3100.
+
+Verification:
+
+- recossi.service, jzozo.service, jnono.service, crm-oaklian.service, oaklian.service, cloudflared.service, and cloudflared-deals.service were all active after cleanup.
+- jzozo.com returned HTTP 200 after recossi.service took over port 3100.
+- No production databases or app source files were modified for this cleanup.
+
+Remaining root/dashboard cleanup:
+
+- /etc/cloudflared/config.yml still contains a stale crm.oaklian.com -> localhost:8069 mapping even though crm-oaklian.service runs on port 5001 and public CRM GET currently returns 200 via another Cloudflare-managed route.
+- cloudflared-jnono is token-managed and still routes jnono.com to localhost:8000. The clean final state should route jnono.com to localhost:5173 or to host nginx, then remove the port-8000 compatibility watchdog.
+- Updating those root/dashboard-managed routes requires sudo or Cloudflare dashboard access.
